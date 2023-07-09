@@ -5,13 +5,16 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const dayjs = require("dayjs");
+const session = require("express-session");
+const passport = require("passport");
+const MongoStore = require("connect-mongo");
 
 const indexRouter = require("./routes");
 const postsRouter = require("./routes/posts");
 
-mongoose.connect(
-  "mongodb+srv://ahoney0512:4M85Z9qzGO2lhHUG@cluster0.uqzekna.mongodb.net/"
-);
+require("./passport")();
+
+mongoose.connect("mongodb://localhost:27017/museum");
 
 mongoose.connection.on("connected", () => {
   console.log("MongoDB Connected");
@@ -31,6 +34,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
+app.use(
+  session({
+    secret: "",
+    resave: false,
+    saveUninitialized: true,
+    store: MongoStore.create({
+      mongoUrl: "mongodb://localhost:27017/museum",
+    }),
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use("/", indexRouter);
 app.use("/posts", postsRouter);

@@ -7,69 +7,6 @@ import web from "../../images/web_access.png";
 import open from "../../images/logo_open.png";
 import { styled } from "styled-components";
 
-const SmallFooterBlock = styled.div`
-  display: flex;
-  border-top: 0.2px solid black;
-  padding: 40px 0;
-  div {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    &.sites1 {
-      font-size: 20px;
-      font-weight: 600;
-      li {
-        padding: 10px 0;
-      }
-    }
-    &.sites2 button {
-      display: inline-block;
-      margin: 10px 0;
-      font-size: 18px;
-      font-weight: 400;
-      text-align: left;
-      margin-left: 30px;
-      margin-right: 100px;
-      padding: 10px 0;
-      border-bottom: 2px solid black;
-    }
-
-    &.sites3 {
-      font-size: 15px;
-      li {
-        margin: 5px 0;
-      }
-      li:first-child {
-        font-weight: 700;
-      }
-    }
-    &.last {
-      div {
-        width: 100%;
-        text-align: right;
-
-        padding: 10px;
-      }
-      .go {
-        flex-direction: row;
-        justify-content: space-between;
-        img {
-          width: 40px;
-        }
-      }
-      .adress {
-        white-space: nowrap;
-      }
-      .imgs {
-        flex-direction: row-reverse;
-        align-items: center;
-      }
-      .imgs > img {
-        width: 20%;
-      }
-    }
-  }
-`;
 const SmallFooter = () => {
   const sites1 = [
     ["문화유산표준관리시스템", "#"],
@@ -135,8 +72,8 @@ const SmallFooter = () => {
   return (
     <SmallFooterBlock>
       <div className="sites1">
-        {sites1.map((item) => (
-          <li>{item[0]}</li>
+        {sites1.map((item, index) => (
+          <li key={`site1_${index}`}>{item[0]}</li>
         ))}
       </div>
       <div className="sites2">
@@ -145,8 +82,8 @@ const SmallFooter = () => {
         ))}
       </div>
       <div className="sites3">
-        {sites3.map((item) => (
-          <li>{item[0]}</li>
+        {sites3.map((item, index) => (
+          <li key={`site3_${index}`}>{item[0]}</li>
         ))}
       </div>
       <div className="last">
@@ -176,3 +113,67 @@ const SmallFooter = () => {
 };
 
 export default SmallFooter;
+
+const SmallFooterBlock = styled.div`
+  display: flex;
+  border-top: 0.2px solid black;
+  padding: 40px 0;
+  div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    &.sites1 {
+      font-size: 20px;
+      font-weight: 600;
+      li {
+        padding: 10px 0;
+      }
+    }
+    &.sites2 button {
+      display: inline-block;
+      margin: 10px 0;
+      font-size: 18px;
+      font-weight: 400;
+      text-align: left;
+      margin-left: 30px;
+      margin-right: 100px;
+      padding: 10px 0;
+      border-bottom: 2px solid black;
+    }
+
+    &.sites3 {
+      font-size: 15px;
+      li {
+        margin: 5px 0;
+      }
+      li:first-child {
+        font-weight: 700;
+      }
+    }
+    &.last {
+      div {
+        width: 100%;
+        text-align: right;
+
+        padding: 10px;
+      }
+      .go {
+        flex-direction: row;
+        justify-content: space-between;
+        img {
+          width: 40px;
+        }
+      }
+      .adress {
+        white-space: nowrap;
+      }
+      .imgs {
+        flex-direction: row-reverse;
+        align-items: center;
+      }
+      .imgs > img {
+        width: 20%;
+      }
+    }
+  }
+`;

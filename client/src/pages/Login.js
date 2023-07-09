@@ -1,13 +1,13 @@
 import { styled } from "styled-components";
 import Layout from "./Layout";
-import MockExhibition from "../components/Home/MockExhibition";
+import Loginform from "../containers/LoginForm";
 
 const LoginBlock = styled.div``;
 const Login = () => {
   return (
     <Layout>
       <LoginBlock>
-        <MockExhibition />
+        <Loginform />
       </LoginBlock>
     </Layout>
   );
